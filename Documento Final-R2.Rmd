@@ -1,0 +1,106 @@
+---
+title: INTRODUCCIÓN A R 
+author: Maria Alejandra Quintero Ferro
+output:
+  rmdformats::readthedown:
+  collapse: true
+  self_contained: true
+thumbnails: true
+lightbox: true
+gallery: false
+highlight: tango
+
+---
+<!-- install.packages("rmdformats") -->
+<!-- library(rmdformats) -->
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## ¿Qué es R Markdown?
+
+Markdown es un lenguaje de marcado ligero creado por John Gruber que trata de conseguir la máxima legibilidad y facilidad de publicación tanto en su forma de entrada como de salida, inspirándose en muchas convenciones existentes para marcar mensajes de correo electrónico usando texto plano.
+
+John Gruber creador de R-Markdown dice: "Que la utilidad de este se diferencia por dos cosas: _**el lenguaje**_ y por otro lado, es una _**herramienta de software**_ que convierte el lenguaje en HTML válido.
+
+
+## Ventajas de utilizar R Markdown
+
+
+**1 Escribir para web es más rápido y cómodo**
+
+Una vez que te acostumbras y conoces mínimamente la sintaxis, completas el texto más rápido. Si lo que hacemos normalmente es seguir un proceso del tipo "escritura -> revisión -> formato", las partes de revisión y formato las podemos hacer al mismo tiempo sin abandonar el teclado.
+Además, la sintaxis de _**Markdown está pensada para que resulte más fácil de leer**_. Es decir, que los elementos de formato no estorben la lectura, como sí ocurre en HTML.
+
+**2 Es más difícil cometer errores de sintaxis**
+
+El HTML básico, que es el que necesitamos para dar formato a un texto, es sumamente sencillo de usar. Pero también es muy fácil cometer errores. El más habitual: _**olvidarse de cerrar**_ una etiqueta de manera adecuada. _**Markdown hace que un error tan común como éste no se produzca**_.
+
+**3 Es perfecto para usarlo con editores de texto minimalistas**
+
+A mucha gente le gusta escribir en texto plano, utilizando editores de texto o _**procesadores minimalistas**_ por una cuestión de concentración: muchas veces, _**no necesitamos tantas herramientas como las que nos ofrece un procesador como Word**_, especialmente cuando todo lo que vamos a hacer es escribir un texto con un formato básico. 
+
+**4 Es ideal para el entorno móvil**
+
+Si bien existen aplicaciones para dispositivos móviles que nos permiten aplicar formato a un texto, resulta _bastante incómodo_ hacerlo por la misma naturaleza del sistema táctil. _**Si usamos una aplicación que soporta Markdown, tan sólo se trata de escribir unos pocos caracteres más**_. Es más rápido y ágil, especialmente si vamos aplicando el formato a medida que escribimos.
+
+*En síntesis R-Markdown es un formato que permite una fácil creación de documentos, presentaciones dinámicas e informes de R.* _**Markdown**_ es un formato de sintaxis simple para crear en **HTML, PDF, y Word**. 
+
+En el siguiente link pueden encontrar información de como se crean estos documentos [link](https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-spanish.pdf)
+
+
+##  Expresiones Regulares
+
+Es una notación de patrones de texto en contraposición a cadenas de caracteres exactas. La notación utiliza caracteres literales y metacaracteres. Cada carácter que no tiene un significado especial en la sintaxis de expresiones regulares es un carácter literal y coincide con una ocurrencia de ese carácter. _**Por ejemplo**_, letras y número son caracteres literales. 
+
+Un metacaracter es un símbolo con significado especial (un operador o delimitador) en la sintaxis de expresiones regulares.
+
+Caracter | Descripción
+-------- | -----------
+   *     | Repetir: cero o más ocurrencias de carácter o clase anteriores
+   ^     | Posición en la línea: comienzo de la línea
+   $     | Posición en la línea: fin de la línea
+[class]  | Clase de carácter: cualquier carácter de la serie
+[^class] | Clase inversa: cualquier carácter que no esté en la serie
+ [x-y]   | Intervalo: cualquier carácter que esté dentro del intervalo especificado
+ \<xyz   | Posición de palabra: principio de palabra
+ xyz\>   | Posición de palabra: fin de palabra
+
+Los fundamentos de las expresiones regulares. Son muy útiles y se emplean en muchos más lenguajes de programación
+
+# ¿Cuáles son los tipos de expresiones regulares?
+
+Se clasifican en tres tipos:
+
+**Expresiones regulares POSIX extendida** [link](https://www.ibm.com/support/knowledgecenter/es/SS8NLW_12.0.0/com.ibm.swg.im.infosphere.dataexpl.engine.doc/c_posix-regex-examples.html)
+
+**Expresiones regulares básicas** [link](https://indexingdata.com/blog/analitica-web/guia-basica-expresiones-regulares/)
+
+**Expresiones regulares de Perl** [link](http://www2.iib.uam.es/bioinfo/curso/perl/tutoriales/cicei/cap6.htm)
+
+Por último las expresiones regulares pueden ser de gran utilidad en análisis de secuencias en donde se realiza un gran número de tareas relacionadas con la búsqueda y la sustitución o extracción de cadenas de un texto.
+
+
+
+
+# Análisis de gráficas en ggplot2
+
+```{r setup, includeFALSE}
+library(ggplot2)
+library(reshape2)
+
+
+carburantes <-read.table("./recursos/carburantes_20050222.csv",sep = "\t", header = 
+                           TRUE,fill = TRUE,na.strings = ".",quote = "",dec = ",",encoding = "UTF-8")
+
+
+ggplot(carburantes, aes(Provincia)) +
+  geom_density()
+
+
+
+
+
