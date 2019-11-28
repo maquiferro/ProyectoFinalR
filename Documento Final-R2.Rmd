@@ -20,6 +20,8 @@ highlight: tango
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+
 ## ¿Qué es R Markdown?
 
 Markdown es un lenguaje de marcado ligero creado por John Gruber que trata de conseguir la máxima legibilidad y facilidad de publicación tanto en su forma de entrada como de salida, inspirándose en muchas convenciones existentes para marcar mensajes de correo electrónico usando texto plano.
@@ -35,7 +37,7 @@ John Gruber creador de R-Markdown dice: "Que la utilidad de este se diferencia p
 Una vez que te acostumbras y conoces mínimamente la sintaxis, completas el texto más rápido. Si lo que hacemos normalmente es seguir un proceso del tipo "escritura -> revisión -> formato", las partes de revisión y formato las podemos hacer al mismo tiempo sin abandonar el teclado.
 Además, la sintaxis de _**Markdown está pensada para que resulte más fácil de leer**_. Es decir, que los elementos de formato no estorben la lectura, como sí ocurre en HTML.
 
-**2 Es más difícil cometer errores de sintaxis**
+**2 Correciones sintaxis**
 
 El HTML básico, que es el que necesitamos para dar formato a un texto, es sumamente sencillo de usar. Pero también es muy fácil cometer errores. El más habitual: _**olvidarse de cerrar**_ una etiqueta de manera adecuada. _**Markdown hace que un error tan común como éste no se produzca**_.
 
@@ -85,20 +87,33 @@ Por último las expresiones regulares pueden ser de gran utilidad en análisis d
 
 
 
+# Ejemplos en R Markdown con:  
 
-# Análisis de gráficas en ggplot2
+## plot
+```{r, echo=FALSE, fig.width=10, fig.height=10}
+plot(mtcars$disp, mtcars$drat, col = "red", main = "coches", xlab = "vel", ylab = "freno",
+     grid())
+```
 
-```{r setup, includeFALSE}
+
+
+## Gráficas en ggplot2
+
+```{r, echo=FALSE, fig.width=10, fig.height=10}
 library(ggplot2)
 library(reshape2)
+cars <- ggplot(mtcars, aes(x = disp, y = drat, colour = cyl)) + geom_point()
+cars <- cars + ggtitle("Comparación desplazamiento/peso de los coches en función del motor") + 
+         labs(x = "Desplazamiento", 
+              y = "Peso", 
+              colour = "# de cilindro")
+cars
+```
+
+El desplazamiento de los coches se concentra con mayor proporción en una velocidad promedio de 100 a 200, mientras que los coches que optienen velocidades mayores a 300 su nivel de freno es menor a 3.5.
 
 
-carburantes <-read.table("./recursos/carburantes_20050222.csv",sep = "\t", header = 
-                           TRUE,fill = TRUE,na.strings = ".",quote = "",dec = ",",encoding = "UTF-8")
 
-
-ggplot(carburantes, aes(Provincia)) +
-  geom_density()
 
 
 
